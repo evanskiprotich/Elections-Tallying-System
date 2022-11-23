@@ -31,7 +31,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.jqueryui.min.css"
     integrity="sha512-x2AeaPQ8YOMtmWeicVYULhggwMf73vuodGL7GwzRyrPDjOUSABKU7Rw9c3WNFRua9/BvX/ED1IK3VTSsISF6TQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-responsive-bs/2.4.0/responsive.bootstrap.min.css" integrity="sha512-lC7CsBqS9byAEsS32hb1hbptYmqxRoPc+kIKOydGHfpUXHywskhQHlIQj69/S5egtqEqsEsFwjc5x5HHx/T14Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"
     integrity="sha512-OQlawZneA7zzfI6B1n1tjUuo3C5mtYuAWpQdg+iI9mkDoo7iFzTqnQHf+K5ThOWNJ9AbXL4+ZDwH7ykySPQc+A=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -81,7 +81,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{% url 'home' %}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -146,30 +146,33 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="login.html" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-light small">LOGIN</span>
-              </a>
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="mr-2 d-none d-lg-inline text-light  ">{{request.user.username}}</span>
+                  <span id="user_level" style="display: none;">7</span>
+                  <img class="img-profile rounded-circle" src="https://tinyurl.com/ys2rdmmw">
+           </a>
               <!-- Dropdown - User Information -->
+              {% if user.is_authenticated %}
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
+                  <div class="dropdown-divider"></div>
+                  <a id="logout_usr" class="dropdown-item" href="{% url 'logout' %}">
+                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                      Logout
+                  </a>
               </div>
-            </li>
+              {% else %}
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="{% url 'login' %}">
+                  <span class="mr-2 d-none d-lg-inline text-light small">LOGIN</span>
+                </a>
+              </li>
+              {% endif %}
+          </li>
+            <!-- <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="">
+                <span class="mr-2 d-none d-lg-inline text-light small">{{request.user.username}}</span>
+              </a>
+            </li> -->
 
           </ul>
 
@@ -201,23 +204,23 @@
                           <ul class="list-group list-group-flush rounded-3">
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                               <div class="mb-0 font-weight-bold">County</div>
-                              <p id="regdate" class="mb-0 ">NAIROBI CITY</p>
+                              <p id="regdate" class="mb-0 ">{{request.user.profile.county}}</p>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                               <div class="mb-0 font-weight-bold">County code </div>
-                              <p id="regdate" class="mb-0 ">047</p>
+                              <p id="regdate" class="mb-0 ">{{request.user.profile.county_code}}</p>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                               <div class="mb-0 font-weight-bold">Constituency name</div>
-                              <p id="cand_approval" class="mb-0  ">STAREHE</p>
+                              <p id="cand_approval" class="mb-0  ">{{request.user.profile.constituency}}</p>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                              <div class="mb-0 font-weight-bold">Consituency code</div>
-                              <p id="cand_post" class="mb-0 ">291</p>
+                              <div class="mb-0 font-weight-bold">Constituency code</div>
+                              <p id="cand_post" class="mb-0 ">{{request.user.profile.constituency_code}}</p>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                               <div class="mb-0 font-weight-bold">Constituency PO:</div><br>
-                              <p id="partyname" class="mb-0 ">Evans Kiprotich Kipngetich</p>
+                              <p id="partyname" class="mb-0 ">{{request.user.get_full_name}}</p>
                             </li>
                           </ul>
                         </div>
@@ -234,7 +237,7 @@
                             <div class="col-sm-12">
 
                               <form id="poconstresultfrm" method="POST" enctype="multipart/form-data">
-                                <input type="text" value="290" readonly="" required=""
+                                <input type="text" value="{{request.user.profile.constituency_code}}" readonly="" required=""
                                   class="form-control form-control-md rounded-0 numonly" name="constcode" id="constcode"
                                   disabled="disabled"><br>
                                 <div class="row">
@@ -243,8 +246,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly" name="ruto" id="ruto"
-                                      disabled="disabled">
+                                      class="form-control form-control-md rounded-0 numonly" name="ruto" id="ruto">
                                   </div>
                                 </div>
                                 <hr>
@@ -254,8 +256,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly" name="odinga" id="odinga"
-                                      disabled="disabled">
+                                      class="form-control form-control-md rounded-0 numonly" name="odinga" id="odinga">
                                   </div>
                                 </div>
                                 <hr>
@@ -266,7 +267,7 @@
                                   <div class="col-md-5">
                                     <input type="text" required=""
                                       class="form-control form-control-md rounded-0 numonly " name="wajakoya"
-                                      id="wajakoya" disabled="disabled">
+                                      id="wajakoya">
                                   </div>
                                 </div>
                                 <hr>
@@ -276,8 +277,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly " name="mwaure" id="mwaure"
-                                      disabled="disabled">
+                                      class="form-control form-control-md rounded-0 numonly " name="mwaure" id="mwaure">
                                   </div>
                                 </div>
                                 <hr>
@@ -286,9 +286,9 @@
                                     <label>Total Votes Cast</label>
                                   </div>
                                   <div class="col-md-5">
-                                    <input type="text" required="" value="0" readonly=""
+                                    <input type="text" required=""
                                       class="form-control form-control-md rounded-0 numonly" name="totalvotes"
-                                      id="totalvotes" disabled="disabled">
+                                      id="totalvotes">
                                   </div>
                                 </div>
                                 <hr>
@@ -298,7 +298,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" class="form-control form-control-md rounded-0 "
-                                      name="rejectedvotes" id="rejectedvotes" disabled="disabled">
+                                      name="rejectedvotes" id="rejectedvotes">
                                   </div>
                                 </div>
                                 <hr>
@@ -307,9 +307,9 @@
                                     <label>Valid Votes</label>
                                   </div>
                                   <div class="col-md-5">
-                                    <input type="text" value="0" readonly=""
+                                    <input type="text"
                                       class="form-control form-control-md rounded-0  numonly" name="validvotes"
-                                      id="validvotes" disabled="disabled">
+                                      id="validvotes">
                                   </div>
                                 </div>
                                 <hr>
@@ -320,7 +320,7 @@
                                   <div class="col-md-5">
                                     <input type="text" required=""
                                       class="form-control form-control-md rounded-0 numonly" name="regvoters"
-                                      id="regvoters" disabled="disabled">
+                                      id="regvoters">
                                   </div>
                                 </div>
                                 <hr>
@@ -366,10 +366,18 @@
       <!-- /.container-fluid -->
 
     </div>
-  </div>
+  
   <!-- End of Main Content -->
-
-
+<!-- Footer -->
+<!-- <footer class="sticky-footer bg-white">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; Evans Kipngetich 2022</span>
+    </div>
+  </div>
+</footer> -->
+<!-- End of Footer -->
+</div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

@@ -43,18 +43,18 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">RESULTS TRANSMISSION SYSTEM -RTS</h1>
                   </div>
-                  <form id="loginform" class="user" method="post">
+                  <form id="loginform" class="user" method="POST">
+                    {% csrf_token %} 
                     <div class="form-group">
 
-                      <label>Id/Passport Number</label>
-                      <input required="" type="text" class="form-control form-control-md rounded-0" id="useridpp"
-                        name="useridpp">
+                      <label>Username</label>
+                      <input required="" type="text" class="form-control form-control-md rounded-0" name="username">
                     </div>
                     <div class="form-group">
                       <label>Password</label>
-                      <input type="password" class="form-control rounded-0 " id="userpassword" name="userpassword">
+                      <input type="password" class="form-control rounded-0 " id="userpassword" name="password">
                     </div>
-                    <button type="submit" class="btn btn-md btn-primary btn-block rounded-0" name="loginuser"
+                    <button type="submit" class="btn btn-md btn-primary btn-block rounded-0" value="password"
                       id="loginuser">LOGIN</button>
                   </form>
                   <hr>

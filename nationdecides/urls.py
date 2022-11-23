@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('base.urls')),
     path('podashboard/', include('base.urls')),
-    path('login/', include('base.urls'))
+    path('login/', include('base.urls')),
+    path('logout/', include('base.urls')),
 ]

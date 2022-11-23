@@ -27,7 +27,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.jqueryui.min.css"
     integrity="sha512-x2AeaPQ8YOMtmWeicVYULhggwMf73vuodGL7GwzRyrPDjOUSABKU7Rw9c3WNFRua9/BvX/ED1IK3VTSsISF6TQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-responsive-bs/2.4.0/responsive.bootstrap.min.css" integrity="sha512-lC7CsBqS9byAEsS32hb1hbptYmqxRoPc+kIKOydGHfpUXHywskhQHlIQj69/S5egtqEqsEsFwjc5x5HHx/T14Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"
     integrity="sha512-OQlawZneA7zzfI6B1n1tjUuo3C5mtYuAWpQdg+iI9mkDoo7iFzTqnQHf+K5ThOWNJ9AbXL4+ZDwH7ykySPQc+A=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -69,11 +69,7 @@
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
 
 
-        <!-- <div class="sidebar-brand-icon rotate-n-15">
-          <img
-            src="https://rts.oumanyang.com/img/rts-ico.png"
-            class='img-logo' alt="Logo">
-        </div> -->
+        
         <div class="sidebar-brand-text mx-3">NATION DECIDES</div>
       </a>
       
@@ -99,7 +95,7 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="login.html">Login Here</a>
+            <a class="collapse-item" href="{% url 'login' %}">Login Here</a>
           </div>
         </div>
       </li>
@@ -159,30 +155,9 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="login.html" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="{% url 'login' %}">
                 <span class="mr-2 d-none d-lg-inline text-light small">LOGIN</span>
               </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
             </li>
 
           </ul>
@@ -233,7 +208,7 @@
                           <td>
                             <p class="font-weight-bold">UNITED DEMOCRATIC ALLIANCE<br>(UDA)</p>
                           </td>
-                          <td><img class="img-candidate  mb-2" src="https://bit.ly/3h9SunD"
+                          <td><img class="img-candidate  mb-2" src="https://tinyurl.com/mvuac5r5"
                               alt="RUTO"></td>
                           <td>
                             <p class="text-left font-weight-bold">RUTO WILLIAM SAMOEI </p>
@@ -253,7 +228,7 @@
                           <td>
                             <p class="font-weight-bold">AZIMIO LA UMOJA ONE KENYA COALITION PARTY<br>(AZIMIO)</p>
                           </td>
-                          <td><img class="img-candidate  mb-2" src="https://bit.ly/3DwcUic"
+                          <td><img class="img-candidate  mb-2" src="https://tinyurl.com/25crp5ru"
                               alt="ODINGA"></td>
                           <td>
                             <p class="text-left font-weight-bold">ODINGA RAILA </p>
@@ -273,7 +248,7 @@
                           <td>
                             <p class="font-weight-bold">ROOTS PARTY OF KENYA<br>(RPK)</p>
                           </td>
-                          <td><img class="img-candidate  mb-2" src="https://bit.ly/3sVygjT"
+                          <td><img class="img-candidate  mb-2" src="https://tinyurl.com/4yp938ea"
                               alt="WAJAKOYA"></td>
                           <td>
                             <p class="text-left font-weight-bold">WAJAKOYA GEORGE LUCHIRI </p>
