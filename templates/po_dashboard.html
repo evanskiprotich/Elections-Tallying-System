@@ -25,13 +25,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css"
     integrity="sha512-3PN6gfRNZEX4YFyz+sIyTF6pGlQiryJu9NlGhu9LrLMQ7eDjNgudQoFDK3WSNAayeIKc6B8WXXpo4a7HqxjKwg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.tutorialjinni.com/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.tutorialjinni.com/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.css" />
   <!-- DataTables-->
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.jqueryui.min.css"
     integrity="sha512-x2AeaPQ8YOMtmWeicVYULhggwMf73vuodGL7GwzRyrPDjOUSABKU7Rw9c3WNFRua9/BvX/ED1IK3VTSsISF6TQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-responsive-bs/2.4.0/responsive.bootstrap.min.css" integrity="sha512-lC7CsBqS9byAEsS32hb1hbptYmqxRoPc+kIKOydGHfpUXHywskhQHlIQj69/S5egtqEqsEsFwjc5x5HHx/T14Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/datatables.net-responsive-bs/2.4.0/responsive.bootstrap.min.css"
+    integrity="sha512-lC7CsBqS9byAEsS32hb1hbptYmqxRoPc+kIKOydGHfpUXHywskhQHlIQj69/S5egtqEqsEsFwjc5x5HHx/T14Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/dataTables.bootstrap4.min.js"
     integrity="sha512-OQlawZneA7zzfI6B1n1tjUuo3C5mtYuAWpQdg+iI9mkDoo7iFzTqnQHf+K5ThOWNJ9AbXL4+ZDwH7ykySPQc+A=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -134,9 +138,9 @@
         <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn-primary"> 
+          <button id="sidebarToggleTop" class="btn-primary">
             <i class="fa fa-bars"></i>
-        </button>
+          </button>
 
 
 
@@ -146,28 +150,29 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="mr-2 d-none d-lg-inline text-light  ">{{request.user.username}}</span>
-                  <span id="user_level" style="display: none;">7</span>
-                  <img class="img-profile rounded-circle" src="https://tinyurl.com/ys2rdmmw">
-           </a>
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-light  ">{{request.user.username}}</span>
+                <span id="user_level" style="display: none;">7</span>
+                <img class="img-profile rounded-circle" src="https://tinyurl.com/ys2rdmmw">
+              </a>
               <!-- Dropdown - User Information -->
               {% if user.is_authenticated %}
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                  <div class="dropdown-divider"></div>
-                  <a id="logout_usr" class="dropdown-item" href="{% url 'logout' %}">
-                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                      Logout
-                  </a>
+                <div class="dropdown-divider"></div>
+                <a id="logout_usr" class="dropdown-item" href="{% url 'logout' %}">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
               </div>
               {% else %}
-              <li class="nav-item dropdown no-arrow">
-                <a class="nav-link dropdown-toggle" href="{% url 'login' %}">
-                  <span class="mr-2 d-none d-lg-inline text-light small">LOGIN</span>
-                </a>
-              </li>
-              {% endif %}
-          </li>
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="{% url 'login' %}">
+                <span class="mr-2 d-none d-lg-inline text-light small">LOGIN</span>
+              </a>
+            </li>
+            {% endif %}
+            </li>
             <!-- <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="">
                 <span class="mr-2 d-none d-lg-inline text-light small">{{request.user.username}}</span>
@@ -236,17 +241,23 @@
                           <div class="row ">
                             <div class="col-sm-12">
 
-                              <form id="poconstresultfrm" method="POST" enctype="multipart/form-data">
-                                <input type="text" value="{{request.user.profile.constituency_code}}" readonly="" required=""
-                                  class="form-control form-control-md rounded-0 numonly" name="constcode" id="constcode"
-                                  disabled="disabled"><br>
+                              <form id="loginform" class="user" method="POST">
+                                {% csrf_token %} 
+                                {% if messages %}
+                                {% for message in messages %}
+                                <p class="text-success">{{ message }}</p>
+                                {% endfor %}
+                                {% endif %}
+                                <input type="text" value="{{request.user.profile.constituency_code}}" readonly=""
+                                  required="" class="form-control form-control-md rounded-0 numonly" name="constcode"
+                                  id="constcode" disabled="disabled"><br>
                                 <div class="row">
                                   <div class="col-md-7">
-                                    <label for="student_number">RUTO WILLIAM SAMOEI</label>
+                                    <label for="candidate1">RUTO WILLIAM SAMOEI</label>
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly" name="ruto" id="ruto">
+                                      class="form-control form-control-md rounded-0 numonly" name="candidate_one">
                                   </div>
                                 </div>
                                 <hr>
@@ -256,7 +267,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly" name="odinga" id="odinga">
+                                      class="form-control form-control-md rounded-0 numonly" name="candidate_two">
                                   </div>
                                 </div>
                                 <hr>
@@ -266,8 +277,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly " name="wajakoya"
-                                      id="wajakoya">
+                                      class="form-control form-control-md rounded-0 numonly "name="candidate_three">
                                   </div>
                                 </div>
                                 <hr>
@@ -277,7 +287,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly " name="mwaure" id="mwaure">
+                                      class="form-control form-control-md rounded-0 numonly " name="candidate_four">
                                   </div>
                                 </div>
                                 <hr>
@@ -287,8 +297,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly" name="totalvotes"
-                                      id="totalvotes">
+                                      class="form-control form-control-md rounded-0 numonly" name="totalvotes">
                                   </div>
                                 </div>
                                 <hr>
@@ -298,7 +307,7 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" class="form-control form-control-md rounded-0 "
-                                      name="rejectedvotes" id="rejectedvotes">
+                                      name="rejectedvotes">
                                   </div>
                                 </div>
                                 <hr>
@@ -307,9 +316,8 @@
                                     <label>Valid Votes</label>
                                   </div>
                                   <div class="col-md-5">
-                                    <input type="text"
-                                      class="form-control form-control-md rounded-0  numonly" name="validvotes"
-                                      id="validvotes">
+                                    <input type="text" class="form-control form-control-md rounded-0  numonly"
+                                      name="validvotes">
                                   </div>
                                 </div>
                                 <hr>
@@ -319,13 +327,11 @@
                                   </div>
                                   <div class="col-md-5">
                                     <input type="text" required=""
-                                      class="form-control form-control-md rounded-0 numonly" name="regvoters"
-                                      id="regvoters">
+                                      class="form-control form-control-md rounded-0 numonly" name="regvoters">
                                   </div>
                                 </div>
                                 <hr>
-                                <button class="btn btn-primary btn-block rounded-0 pocreatebtn" name="postpresresults"
-                                  id="postpresresults" type="submit" disabled="disabled">Submit Results</button>
+                                <button class="btn btn-primary btn-block rounded-0 pocreatebtn" name="submit" type="submit">Submit Results</button>
                               </form>
                             </div>
 
@@ -366,18 +372,18 @@
       <!-- /.container-fluid -->
 
     </div>
-  
-  <!-- End of Main Content -->
-<!-- Footer -->
-<!-- <footer class="sticky-footer bg-white">
+
+    <!-- End of Main Content -->
+    <!-- Footer -->
+    <!-- <footer class="sticky-footer bg-white">
   <div class="container my-auto">
     <div class="copyright text-center my-auto">
       <span>Copyright &copy; Evans Kipngetich 2022</span>
     </div>
   </div>
 </footer> -->
-<!-- End of Footer -->
-</div>
+    <!-- End of Footer -->
+  </div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

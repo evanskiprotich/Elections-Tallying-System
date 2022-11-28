@@ -45,6 +45,11 @@
                   </div>
                   <form id="loginform" class="user" method="POST">
                     {% csrf_token %} 
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                    {% endif %}
                     <div class="form-group">
 
                       <label>Username</label>
@@ -54,7 +59,7 @@
                       <label>Password</label>
                       <input type="password" class="form-control rounded-0 " id="userpassword" name="password">
                     </div>
-                    <button type="submit" class="btn btn-md btn-primary btn-block rounded-0" value="password"
+                    <button type="submit" class="btn btn-md btn-primary btn-block rounded-0"
                       id="loginuser">LOGIN</button>
                   </form>
                   <hr>

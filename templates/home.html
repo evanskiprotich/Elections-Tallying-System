@@ -177,7 +177,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">2022 GENERAL ELECTIONS PRESIDENTIAL RESULTS</h6>
                 </div>
                 <div class="card-body  ">
-                  <div class="alert alert-success rounded-0 font-weight-bold"> <span id="constreported">289/290</span>
+                  <div class="alert alert-success rounded-0 font-weight-bold"> <span id="constreported">{{ officer.officer.count }} </span>
                     Constituencies Reporting </div>
 
                   <div id="resdashboard_wrapper" class="dataTables_wrapper no-footer">
@@ -220,7 +220,7 @@
                                 aria-valuemax="100"></div>
                             </div><span>50.23%</span>
                           </td>
-                          <td class="sorting_1">7,135,112</td>
+                          <td class="sorting_1">{{request.user.electionresult.candidate_one}}</td>
                         </tr>
                         <tr class="even">
                           <td class="dtr-control"><img width="70px" class="avatar-img img-fluid"
@@ -240,7 +240,7 @@
                                 aria-valuemax="100"></div>
                             </div><span>48.36%</span>
                           </td>
-                          <td class="sorting_1">6,869,580</td>
+                          <td class="sorting_1">{{request.user.electionresult.candidate_two}}</td>
                         </tr>
                         <tr class="odd">
                           <td class="dtr-control"><img width="70px" class="avatar-img img-fluid"
@@ -260,7 +260,7 @@
                                 aria-valuemax="100"></div>
                             </div><span>0.41%</span>
                           </td>
-                          <td class="sorting_1">58,777</td>
+                          <td class="sorting_1">{{request.user.electionresult.candidate_three}}</td>
                         </tr>
                         <tr class="even">
                           <td class="dtr-control"><img width="70px" class="avatar-img img-fluid"
@@ -280,7 +280,7 @@
                                 aria-valuemax="100"></div>
                             </div><span>0.23%</span>
                           </td>
-                          <td class="sorting_1">32,039</td>
+                          <td class="sorting_1">{{request.user.electionresult.candidate_four}}</td>
                         </tr>
                       </tbody>
                     </table>
