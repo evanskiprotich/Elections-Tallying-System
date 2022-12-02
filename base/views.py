@@ -23,6 +23,9 @@ def loginUser(request):
 def podashboard(request):
     
     if request.method == 'POST':
+        if Result.objects.filter(officer=request.user).exists():
+            messages.error(request, 'YOU HAVE ALREADY SUBMITTED YOUR CONSTITUENCY RESULTS')
+            return redirect('/results')
         officer = request.user
         candidate_one = request.POST['candidate_one']
         candidate_two = request.POST['candidate_two']
@@ -36,7 +39,7 @@ def podashboard(request):
         results = Result(officer=officer, candidate_one = candidate_one, candidate_two = candidate_two, candidate_three = candidate_three, candidate_four = candidate_four, totalvotes = totalvotes, rejectedvotes = rejectedvotes, validvotes=validvotes, regvoters = regvoters)
 
         results.save()
-        messages.success(request, 'Data has been submitted')
+        messages.success(request, 'DATA HAS BEEN SUBMITTED SUCCESSFULLY!!!')
 
     return render(request, 'po_dashboard.html')
 
