@@ -4,8 +4,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Result, Candidate
+<<<<<<< HEAD
 from django.db.models import Sum, Avg, F, Count
 from django.db.models.functions import Round
+=======
+from django.db.models import Sum, Avg, F
+>>>>>>> 2aa10f91a002768e3804ab163ed566bed639d8d3
 
 # Create your views here.
 
@@ -132,6 +136,7 @@ def view_result(request):
     regvoters = Result.objects.all().aggregate(Sum('regvoters'))
 
     #percentages
+<<<<<<< HEAD
     candidate1 = (list(Result.objects.aggregate(Sum('candidate_one')).values())[
         0] / list(Result.objects.aggregate(Sum('totalvotes')).values())[0])* 100
     first_candidate = float(candidate1)
@@ -143,6 +148,13 @@ def view_result(request):
         0] / list(Result.objects.aggregate(Sum('totalvotes')).values())[0]) * 100
     turnOut = (list(Result.objects.aggregate(Sum('totalvotes')).values())[
         0] / list(Result.objects.aggregate(Sum('regvoters')).values())[0]) * 100
+=======
+    candidate1 = Result.objects.aggregate(Avg('candidate_one'))
+    # candidate2 = (candidateTwo/totalvotes)*100
+    # candidate3 = (candidateThree/totalvotes)*100
+    # candidate4 = (candidateFour/totalvotes)*100
+    # turnOut = (totalvotes/regvoters)*100 
+>>>>>>> 2aa10f91a002768e3804ab163ed566bed639d8d3
 
     context = {
     "constituencies": constituencies,
@@ -155,10 +167,17 @@ def view_result(request):
     "validvotes": validvotes,
     "regvoters": regvoters, 
     "candidate1": candidate1,
+<<<<<<< HEAD
     "candidate2": candidate2,
     "candidate3": candidate3,
     "candidate4": candidate4,
     "turnOut": turnOut,
+=======
+    # "candidate2": candidate2,
+    # "candidate3": candidate3,
+    # "candidate4": candidate4,
+    # "turnOut": turnOut,
+>>>>>>> 2aa10f91a002768e3804ab163ed566bed639d8d3
     }
 
     return render(request, 'base/results.html',
