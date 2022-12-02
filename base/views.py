@@ -3,13 +3,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import ElectionResult
+from .models import Result, Candidate
+from django.db.models import Sum, Avg, F, Count
+from django.db.models.functions import Round
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'base/home.html')
 
 
 def loginUser(request):
@@ -30,7 +32,7 @@ def podashboard(request):
         validvotes = request.POST['validvotes']
         regvoters = request.POST['regvoters']
 
-        results = ElectionResult(officer=officer, candidate_one = candidate_one, candidate_two = candidate_two, candidate_three = candidate_three, candidate_four = candidate_four, totalvotes = totalvotes, rejectedvotes = rejectedvotes, validvotes=validvotes, regvoters = regvoters)
+        results = Result(officer=officer, candidate_one = candidate_one, candidate_two = candidate_two, candidate_three = candidate_three, candidate_four = candidate_four, totalvotes = totalvotes, rejectedvotes = rejectedvotes, validvotes=validvotes, regvoters = regvoters)
 
         results.save()
         messages.success(request, 'Data has been submitted')
@@ -92,3 +94,72 @@ def custom_logout(request):
     logout(request)
     return redirect("home")
 
+
+def view_candidates(request, candidate_id):
+    candidate_list = Candidate.objects.all(pk=candidate_id)
+    
+    return render(request, 'home.html',
+                    {'candidate': candidate_list})
+
+
+def view_result(request):
+    results = Result.objects.all()
+
+    
+    return render(request, 'base/results.html',
+                    {'results': results})
+
+
+def view_candidate(request):
+    candidates = Candidate.objects.all()
+    
+    context = {
+    "candidates": candidates,
+    } 
+    
+    return render(request, 'base/results.html',
+                    context)
+
+def view_result(request):
+    constituencies = len(Result.objects.all())
+    candidateOne = Result.objects.all().aggregate(Sum(F('candidate_one')))
+    candidateTwo = Result.objects.all().aggregate(Sum('candidate_two'))
+    candidateThree = Result.objects.all().aggregate(Sum('candidate_three'))
+    candidateFour = Result.objects.all().aggregate(Sum('candidate_four'))
+    totalvotes = Result.objects.all().aggregate(Sum(F('totalvotes')))
+    rejectedvotes = Result.objects.all().aggregate(Sum('rejectedvotes'))
+    validvotes = Result.objects.all().aggregate(Sum('validvotes'))
+    regvoters = Result.objects.all().aggregate(Sum('regvoters'))
+
+    #percentages
+    candidate1 = (list(Result.objects.aggregate(Sum('candidate_one')).values())[
+        0] / list(Result.objects.aggregate(Sum('totalvotes')).values())[0])* 100
+    first_candidate = float(candidate1)
+    candidate2 = (list(Result.objects.aggregate(Sum('candidate_two')).values())[
+        0] / list(Result.objects.aggregate(Sum('totalvotes')).values())[0]) * 100
+    candidate3 = (list(Result.objects.aggregate(Sum('candidate_three')).values())[
+        0] / list(Result.objects.aggregate(Sum('totalvotes')).values())[0]) * 100
+    candidate4 = (list(Result.objects.aggregate(Sum('candidate_four')).values())[
+        0] / list(Result.objects.aggregate(Sum('totalvotes')).values())[0]) * 100
+    turnOut = (list(Result.objects.aggregate(Sum('totalvotes')).values())[
+        0] / list(Result.objects.aggregate(Sum('regvoters')).values())[0]) * 100
+
+    context = {
+    "constituencies": constituencies,
+    "candidateOne": candidateOne,
+    "candidateTwo": candidateTwo,
+    "candidateThree": candidateThree,
+    "candidateFour": candidateFour,
+    "totalvotes": totalvotes,
+    "rejectedvotes": rejectedvotes,
+    "validvotes": validvotes,
+    "regvoters": regvoters, 
+    "candidate1": candidate1,
+    "candidate2": candidate2,
+    "candidate3": candidate3,
+    "candidate4": candidate4,
+    "turnOut": turnOut,
+    }
+
+    return render(request, 'base/results.html',
+                    context)
