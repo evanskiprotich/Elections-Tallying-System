@@ -53,7 +53,8 @@ def loginPage(request):
         try:
             user = User.objects.get(username=username)
         except:
-            messages.error(request, "User does not exist")
+           # messages.error(request, "User does not exist")
+           print("User does not exist")
 
         user = authenticate(request, username=username, password=password)
 
@@ -61,7 +62,7 @@ def loginPage(request):
             login(request, user)
             return redirect('podashboard')
         else:
-            messages.error(request, "User does not exist")
+            messages.error(request, "USER DOES NOT EXIST CONTACT ADMIN")
 
     context = {}
     return render(request, 'base/login.html', context)

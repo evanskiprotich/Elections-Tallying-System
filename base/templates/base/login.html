@@ -47,7 +47,7 @@
                     {% csrf_token %} 
                     {% if messages %}
                     {% for message in messages %}
-                    <p>{{ message }}</p>
+                    <p class='text-danger'>{{ message }}</p>
                     {% endfor %}
                     {% endif %}
                     <div class="form-group">
