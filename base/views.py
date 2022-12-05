@@ -117,7 +117,6 @@ def view_result(request):
     #percentages
     candidate1 = (list(Result.objects.aggregate(Sum('candidate_one')).values())[
         0] / list(Result.objects.aggregate(Sum('totalvotes')).values())[0])* 100
-    first_candidate = float(candidate1)
     candidate2 = (list(Result.objects.aggregate(Sum('candidate_two')).values())[
         0] / list(Result.objects.aggregate(Sum('totalvotes')).values())[0]) * 100
     candidate3 = (list(Result.objects.aggregate(Sum('candidate_three')).values())[

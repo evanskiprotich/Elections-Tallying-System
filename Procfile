@@ -1,0 +1,1 @@
+web: gunicorn 'Election-Tallying-System.wsgi'
