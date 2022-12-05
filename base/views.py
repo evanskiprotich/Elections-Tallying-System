@@ -9,37 +9,34 @@ from django.db.models.functions import Round
 from django.db.models import Sum, Avg, F
 
 # Create your views here.
-
-
 def home(request):
     return render(request, 'base/home.html')
-
 
 def loginUser(request):
     return render(request, 'base/login.html')
 
-
 @login_required(login_url='/login/')
 def podashboard(request):
-    
+    # post results of an election with different candidates
     if request.method == 'POST':
         if Result.objects.filter(officer=request.user).exists():
             messages.error(request, 'YOU HAVE ALREADY SUBMITTED YOUR CONSTITUENCY RESULTS')
             return redirect('/results')
-        officer = request.user
-        candidate_one = request.POST['candidate_one']
-        candidate_two = request.POST['candidate_two']
-        candidate_three = request.POST['candidate_three']
-        candidate_four = request.POST['candidate_four']
-        totalvotes = request.POST['totalvotes']
-        rejectedvotes = request.POST['rejectedvotes']
-        validvotes = request.POST['validvotes']
-        regvoters = request.POST['regvoters']
+        else:
+            officer = request.user
+            candidate_one = request.POST['candidate_one']
+            candidate_two = request.POST['candidate_two']
+            candidate_three = request.POST['candidate_three']
+            candidate_four = request.POST['candidate_four']
+            totalvotes = request.POST['totalvotes']
+            rejectedvotes = request.POST['rejectedvotes']
+            validvotes = request.POST['validvotes']
+            regvoters = request.POST['regvoters']
 
-        results = Result(officer=officer, candidate_one = candidate_one, candidate_two = candidate_two, candidate_three = candidate_three, candidate_four = candidate_four, totalvotes = totalvotes, rejectedvotes = rejectedvotes, validvotes=validvotes, regvoters = regvoters)
+            results = Result(officer=officer, candidate_one = candidate_one, candidate_two = candidate_two, candidate_three = candidate_three, candidate_four = candidate_four, totalvotes = totalvotes, rejectedvotes = rejectedvotes, validvotes=validvotes, regvoters = regvoters)
 
-        results.save()
-        messages.success(request, 'DATA HAS BEEN SUBMITTED SUCCESSFULLY!!!')
+            results.save()
+            messages.success(request, 'DATA HAS BEEN SUBMITTED SUCCESSFULLY!!!')
 
     return render(request, 'po_dashboard.html')
 
@@ -92,38 +89,20 @@ def loginPage(request):
     # context = {}
     # return redirect(request, "home", context)
 
-
+#logout view
 @login_required(login_url='/')
 def custom_logout(request):
     logout(request)
     return redirect("home")
 
-
+#view the candidates added to the system by the admin
 def view_candidates(request, candidate_id):
     candidate_list = Candidate.objects.all(pk=candidate_id)
     
     return render(request, 'home.html',
                     {'candidate': candidate_list})
 
-
-def view_result(request):
-    results = Result.objects.all()
-
-    
-    return render(request, 'base/results.html',
-                    {'results': results})
-
-
-def view_candidate(request):
-    candidates = Candidate.objects.all()
-    
-    context = {
-    "candidates": candidates,
-    } 
-    
-    return render(request, 'base/results.html',
-                    context)
-
+#returns from the results table and calculates the number of votes posted for each candidate the percentage average and renders it to the template
 def view_result(request):
     constituencies = len(Result.objects.all())
     candidateOne = Result.objects.all().aggregate(Sum(F('candidate_one')))

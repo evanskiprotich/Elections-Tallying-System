@@ -5,6 +5,8 @@ from django.dispatch import receiver
 from django.db.models import Sum
 
 # Create your models here.
+
+# Profile model- this is where after the user is registered now a profile is created for the user with the fields on the constituency the officer will be handling
 class Profile(models.Model):
     ADMIN = 1
     OFFICER = 2
@@ -28,6 +30,7 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()
 
+# results model- this corresponds to the form to be filled in by the presiding officer on the frontend part- It has all the fields same as the form to enable storing the input on results table
 class Result(models.Model):
     officer = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
     candidate_one = models.IntegerField(blank=True, null=True)
@@ -43,8 +46,7 @@ class Result(models.Model):
         return str(self.officer)+ " " + str(self.candidate_one) + " " + str(self.candidate_two) + " " + str(self.candidate_three) + " " + str(self.candidate_four) + " " + str(self.totalvotes) + " " + str(self.rejectedvotes) + " " + str(self.validvotes) + " " + str(self.regvoters)
 
 
-
-
+#candidate model- to enable the admin add candidates to the system with ease
 class Candidate(models.Model):
     candidate_name = models.CharField(max_length=30, blank=True)
     candidate_image = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
