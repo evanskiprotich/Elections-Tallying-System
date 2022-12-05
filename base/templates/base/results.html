@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base/home.html" %}
 
 {% block content %}
@@ -238,4 +239,246 @@
               </div>
             </div>
           </div>
+=======
+{% extends "base/home.html" %}
+
+{% block content %}
+<!-- Content Row -->
+          <!-- Content Row -->
+          <div class="row">
+            <div class="col-lg-12 mb-4">
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">2022 GENERAL ELECTIONS PRESIDENTIAL RESULTS</h6>
+                </div>
+                <div class="card-body  ">
+                  <div class="alert alert-success rounded-0 font-weight-bold"> <span id="constreported">{{ constituencies }} </span> Out of 290
+                    Constituencies Reporting </div>
+                    
+                  <div id="resdashboard_wrapper" class="dataTables_wrapper no-footer">
+                    <table id="resdashboard" class="text-center table table-sm dataTable no-footer dtr-inline"
+                      role="grid" aria-describedby="resdashboard_info">
+                      <thead class="bg-primary text-light">
+                        <tr role="row">
+                          <th width="8%" class="sorting" tabindex="0" aria-controls="resdashboard" rowspan="1"
+                            colspan="1" aria-label="Party Logo: activate to sort column ascending">Party Logo</th>
+                          <th width="10%" class="sorting" tabindex="0" aria-controls="resdashboard" rowspan="1"
+                            colspan="1" aria-label="Party: activate to sort column ascending">Party</th>
+                          <th width="10%" class="sorting" tabindex="0" aria-controls="resdashboard" rowspan="1"
+                            colspan="1" aria-label="Cand. Photo: activate to sort column ascending">Cand. Photo</th>
+                          <th width="20%" class="sorting" tabindex="0" aria-controls="resdashboard" rowspan="1"
+                            colspan="1" aria-label="Cand. Name: activate to sort column ascending">Cand. Name</th>
+                          <th width="22%" class="sorting" tabindex="0" aria-controls="resdashboard" rowspan="1"
+                            colspan="1" aria-label="Percentage: activate to sort column ascending">Percentage</th>
+                          <th width="20%" class="sorting sorting_desc" tabindex="0" aria-controls="resdashboard"
+                            rowspan="1" colspan="1" aria-label="Votes Tally : activate to sort column ascending"
+                            aria-sort="descending">Votes Tally </th>
+                          
+                        </tr>
+                      </thead>
+                      
+                      <tbody>
+                        <tr class="odd">
+                          <td class="dtr-control"><img width="70px" class="avatar-img img-fluid"
+                              src="https://bit.ly/3WpHAdr"></td>
+                          <td>
+                            <p class="font-weight-bold">	UNITED DEMOCRATIC ALLIANCE <br>(UDA)</p>
+                          </td>
+                          <td><img class="img-candidate  mb-2" src="https://citizentv.s3.amazonaws.com/62066/conversions/Ruto-Portrait%2C-og_image.webp"
+                              alt="RUTO"></td>
+                          <td>
+                            <p class="text-left font-weight-bold">RUTO WILLIAM SAMOEI</p>
+                          </td>
+                          <td>
+                            <div class="progress" style="height:40px">
+                              <div class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar"
+                                style="width: {{ candidate1 |floatformat:2 }}%;background:#FFD700;" aria-valuenow=" {{ candidate1 |floatformat:2 }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            </div><span>{{candidate1 |floatformat:2}}%</span>
+                          </td>
+                          <td class="sorting_1">{{candidateOne.candidate_one__sum}}</td>
+                        </tr>
+                        <tr class="even">
+                          <td class="dtr-control"><img width="70px" class="avatar-img img-fluid"
+                              src="https://bit.ly/3fx31IQ"></td>
+                          <td>
+                            <p class="font-weight-bold">AZIMIO LA UMOJA ONE KENYA COALITION PARTY<br>(AZIMIO)</p>
+                          </td>
+                          <td><img class="img-candidate  mb-2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK4xxDiQdNsMY68yj93WgOWreuQpJwSo3gtqOPHzXLcw&s"
+                              alt="ODINGA"></td>
+                          <td>
+                            <p class="text-left font-weight-bold">ODINGA RAILA </p>
+                          </td>
+                          <td>
+                            <div class="progress" style="height:40px">
+                              <div class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar"
+                                style="width:{{ candidate2 |floatformat:2 }}%;background:#275BA0;" aria-valuenow="{{ candidate2 |floatformat:2 }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            </div><span>{{candidate2 |floatformat:2}}%</span>
+                                
+                          </td>
+                          <td class="sorting_1">{{candidateTwo.candidate_two__sum}}</td>
+                        </tr>
+                        <tr class="odd">
+                          <td class="dtr-control"><img width="70px" class="avatar-img img-fluid"
+                              src="https://bit.ly/3FGUnSJ"></td>
+                          <td>
+                            <p class="font-weight-bold">ROOTS PARTY OF KENYA<br>(RPK)</p>
+                          </td>
+                          <td><img class="img-candidate  mb-2" src="https://nnmedia.nation.africa/uploads/2022/05/Prof-Wajackoyah.jpg"
+                              alt="WAJAKOYA"></td>
+                          <td>
+                            <p class="text-left font-weight-bold">WAJAKOYA GEORGE LUCHIRI </p>
+                          </td>
+                          <td>
+                            <div class="progress" style="height:40px">
+                              <div class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar"
+                                style="width:{{ candidate3 |floatformat:2 }}%;background:#FF1100;" aria-valuenow="{{ candidate3 |floatformat:2 }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            </div><span>{{candidate3 |floatformat:2}}%</span>
+                          </td>
+                          <td class="sorting_1">{{candidateThree.candidate_three__sum}}</td>
+                        </tr>
+                        <tr class="even">
+                          <td class="dtr-control"><img width="70px" class="avatar-img img-fluid"
+                              src="https://bit.ly/3zBJvlm"></td>
+                          <td>
+                            <p class="font-weight-bold">AGANO PARTY<br>(AGANO)</p>
+                          </td>
+                          <td><img class="img-candidate  mb-2" src="https://bit.ly/3Ui091m"
+                              alt="MWAURE"></td>
+                          <td>
+                            <p class="text-left font-weight-bold">MWAURE DAVID WAIHIGA </p>
+                          </td>
+                          <td>
+                            <div class="progress" style="height:40px">
+                              <div class="progress-bar progress-bar-striped progress-bar-animated " role="progressbar"
+                                style="width:{{ candidate4 |floatformat:2 }}%;background:#4B0DBF;" aria-valuenow="{{ candidate4 |floatformat:2 }}" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                            </div><span>{{candidate4 |floatformat:2}}%</span>
+                          </td>
+                          <td class="sorting_1">{{candidateFour.candidate_four__sum}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="dataTables_info" id="resdashboard_info" role="status" aria-live="polite">Showing 1 to 1
+                      of 1 entries</div>
+                    <div class="dataTables_paginate paging_simple_numbers" id="resdashboard_paginate"><a
+                        class="paginate_button previous disabled" aria-controls="resdashboard" data-dt-idx="0"
+                        tabindex="-1" id="resdashboard_previous">Previous</a><span><a class="paginate_button current"
+                          aria-controls="resdashboard" data-dt-idx="1" tabindex="0">1</a></span><a
+                        class="paginate_button next disabled" aria-controls="resdashboard" data-dt-idx="2" tabindex="-1"
+                        id="resdashboard_next">Next</a></div>
+                  </div>
+                  
+                </div>
+              </div>
+
+
+
+
+              <div class="col-lg-12 mb-4">
+                <!-- Illustrations -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Summary</h6>
+                  </div>
+                  <div class="card-body">
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                      <!-- Earnings (Monthly) Card Example -->
+                      <div class="col-md-3 mb-4">
+                        <div class="card border-left-info shadow h-70 py-1">
+                          <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                  Total Votes</div>
+                                <div class="h6 font-weight-bold text-gray-800"><span id="totalvotes"></span> {{totalvotes.totalvotes__sum}} Votes</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Earnings (Monthly) Card Example -->
+                      <div class="col-md-3 mb-4">
+                        <div class="card border-left-info shadow h-70 py-1">
+                          <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                  Valid Votes</div>
+                                <div class="h6 font-weight-bold text-gray-800"><span id="validvotes"></span> {{validvotes.validvotes__sum}} Votes</div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Earnings (Monthly) Card Example -->
+                      <div class="col-md-2 mb-4">
+                        <div class="card border-left-info shadow h-70 py-1">
+                          <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                              <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rejected Votes
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                  <div class="col-auto">
+                                    <div class="h6  font-weight-bold text-gray-800"><span id="rejectedballot"></span>
+                                        {{rejectedvotes.rejectedvotes__sum}} Votes</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Pending Requests Card Example -->
+                      <div class="col-md-2 mb-4">
+                        <div class="card border-left-info shadow h-70 py-1">
+                          <div class="card-body">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Voter Turnout
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                              <div class="col-auto">
+                                <div class="h6 font-weight-bold text-gray-800"> <span id="voterturnout"></span>{{turnOut |floatformat:2}}%</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-2 mb-4">
+                        <div class="card border-left-info shadow h-70 py-1">
+                          <div class="card-body">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Registered Voters
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                              <div class="col-auto">
+                                <div class="h6  font-weight-bold text-gray-800"> <span id="registeredvoters"></span>
+                                    {{regvoters.regvoters__sum}} Voters</div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Content Row -->
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+>>>>>>> 187ff9188928f62671042c5e0746477614254f3b
           {% endblock %}
