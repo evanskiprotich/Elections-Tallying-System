@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-r+gq^at7%*rf7k)ba8-^m#rekr(1nu%uu_ca7z5v$i2+97k&%(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOST = ['*']
+ALLOWED_HOST = ['elections-tallying-system-production-70b9.up.railway.app']
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
