@@ -1,1 +1,1 @@
-web: gunicorn 'nationdecides.wsgi'
+web: gunicorn 'elections-tallying-system.wsgi'
