@@ -1,1 +1,1 @@
-web: gunicorn 'elections-tallying-system.wsgi'
+web: gunicorn 'base.wsgi'
